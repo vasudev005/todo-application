@@ -7,7 +7,7 @@ const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [form, setForm] = useState({ email: 'demo@example.com', password: 'password123' });
+  const [form, setForm] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -32,14 +32,45 @@ const LoginPage = () => {
           <p className="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">Use the demo account if you want to connect after seeding your own backend workspace, or sign up with a fresh account.</p>
         </div>
         <div className="p-8 lg:p-12">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Login</h2>
-          <p className="mt-2 text-sm text-slate-500 dark:text-slate-300">Secure JWT authentication with persistent sessions.</p>
+          <Link
+            to="/"
+            className="mb-4 inline-block text-sm font-semibold text-brand-600"
+          >
+            ← Back to Home
+          </Link>
+
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">
+            Login
+          </h2>
+
+          <p className="mt-2 text-sm text-slate-500 dark:text-slate-300">
+            Secure JWT authentication with persistent sessions.
+          </p>
+
           <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-            <input className="input-primary" type="email" placeholder="Email" value={form.email} onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))} required />
-            <input className="input-primary" type="password" placeholder="Password" value={form.password} onChange={(event) => setForm((prev) => ({ ...prev, password: event.target.value }))} required />
-            <button className="btn-primary w-full" disabled={loading}>{loading ? 'Signing in...' : 'Sign in'}</button>
+            <input
+              className="input-primary"
+              type="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
+              required
+            />
+            <input
+              className="input-primary"
+              type="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={(event) => setForm((prev) => ({ ...prev, password: event.target.value }))}
+              required
+            />
+            <button className="btn-primary w-full" disabled={loading}>
+              {loading ? 'Signing in...' : 'Sign in'}
+            </button>
           </form>
-          <p className="mt-6 text-sm text-slate-500 dark:text-slate-300">New here? <Link className="font-semibold text-brand-600" to="/register">Create an account</Link></p>
+          <p className="mt-6 text-sm text-slate-500 dark:text-slate-300">
+            New here? <Link className="font-semibold text-brand-600" to="/register">Create an account</Link>
+          </p>
         </div>
       </div>
     </div>
